@@ -26,7 +26,8 @@
   --color-text-secondary: var(--text-secondary);
   --color-border: var(--border);
   --color-accent1: var(--accent-1);
-  --color-accent2: var(--accent-2);
+  --color-accent2: var(--accent-2);  
+  --shadow-mint: 0 10px 40px -10px hsl(163 100% 45% / 0.3);
 }
 
 body {
