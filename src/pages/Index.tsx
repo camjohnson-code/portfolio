@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Sidebar } from '@/components/Sidebar';
-import { Home } from './../components/Home';
+import { Home } from '@/components/Home';
 // import { Projects } from "@/components/sections/Projects";
 // import { Chat } from "@/components/sections/Chat";
 
