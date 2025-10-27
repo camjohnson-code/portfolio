@@ -93,7 +93,7 @@ export const Sidebar = ({ activeSection, setActiveSection }: SidebarProps) => {
 
       {/* Mobile/Tablet Header with Hamburger */}
       <header className='md:hidden fixed top-0 left-0 right-0 h-16 bg-sidebar border-b border-border flex items-center justify-between px-4 z-50'>
-        <h2 className='text-xl font-bold bg-gradient-primary bg-clip-text text-transparent'>
+        <h2 className='text-xl font-bold bg-gradient-to-r from-accent1 to-accent2 bg-clip-text text-transparent'>
           Portfolio
         </h2>
         <Sheet open={open} onOpenChange={setOpen}>
