@@ -2,7 +2,6 @@ import { useState, useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import type { Message } from '@/types/message';
 import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Card, CardContent } from '@/components/ui/card';
 
@@ -13,8 +12,12 @@ interface ChatProps {
 
 export const Chat = ({ messages, setMessages }: ChatProps) => {
   const scrollAreaRef = useRef<HTMLDivElement>(null);
+  const textareaRef = useRef<HTMLTextAreaElement>(null);
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
+
+  const MIN_TEXTAREA_HEIGHT = 48;
+  const MAX_TEXTAREA_HEIGHT = 128;
 
   useEffect(() => {
     if (scrollAreaRef.current) {
@@ -33,6 +36,12 @@ export const Chat = ({ messages, setMessages }: ChatProps) => {
     const userMessage: Message = { id: crypto.randomUUID(), role: 'user', content: input };
     setMessages((prev) => [...prev, userMessage]);
     setInput('');
+
+    if (textareaRef.current) {
+      textareaRef.current.style.height = 'auto';
+      textareaRef.current.style.height = `${MIN_TEXTAREA_HEIGHT}px`;
+    }
+
     setLoading(true);
 
     try {
@@ -116,15 +125,28 @@ export const Chat = ({ messages, setMessages }: ChatProps) => {
               }}
               className='flex gap-2 p-4 border-t border-border'
             >
-              <Input
+              <textarea
+                ref={textareaRef}
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' && !e.shiftKey) {
+                    e.preventDefault();
+                    sendMessage();
+                  }
+                }}
                 placeholder='Type your message...'
-                className='border border-border focus-visible:ring-0 focus-visible:ring-offset-0 !py-3'
+                className={`flex-1 resize-none border border-border focus:outline-none focus:ring-0 focus:ring-offset-0 py-3 px-3 rounded-md min-h-[${MIN_TEXTAREA_HEIGHT}px] max-h-[${MAX_TEXTAREA_HEIGHT}px] overflow-y-auto`}
+                rows={1}
+                onInput={(e) => {
+                  const target = e.target as HTMLTextAreaElement;
+                  target.style.height = 'auto';
+                  target.style.height = `${Math.min(target.scrollHeight, MAX_TEXTAREA_HEIGHT)}px`;
+                }}
               />
               <Button
                 type='submit'
-                disabled={loading}
+                disabled={loading || !input.trim()}
                 className='bg-accent1 text-bg cursor-pointer hover:shadow-mint transition-all duration-300'
               >
                 Send
