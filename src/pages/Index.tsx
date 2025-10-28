@@ -4,11 +4,7 @@ import { Sidebar } from '@/components/Sidebar';
 import { Home } from '@/components/Home';
 import { Projects } from '@/components/Projects';
 import { Chat } from '@/components/Chat';
-
-type Message = {
-  role: 'user' | 'assistant';
-  content: string;
-};
+import type { Message } from '@/types/message';
 
 const Index = () => {
   const [activeSection, setActiveSection] = useState('home');

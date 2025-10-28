@@ -1,13 +1,9 @@
 import { useState, useRef, useEffect } from 'react';
+import type { Message } from '@/types/message';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Card, CardContent } from '@/components/ui/card';
-
-type Message = {
-  role: 'user' | 'assistant';
-  content: string;
-};
 
 interface ChatProps {
   messages: Message[];
