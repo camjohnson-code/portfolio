@@ -17,7 +17,7 @@ const projects = [
   {
     title: 'AI Career Rep',
     description:
-      "AI chatbot acting as a representitive for me, found in my 'Chat with Me' section.",
+      "AI chatbot acting as a representative for me, found in my 'Chat with Me' section.",
     link: 'https://github.com/camjohnson-code/career-ai-bot',
     image: aiCareerRepImage,
   },
