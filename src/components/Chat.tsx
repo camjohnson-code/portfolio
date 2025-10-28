@@ -135,9 +135,6 @@ export const Chat = ({ messages, setMessages }: ChatProps) => {
                 placeholder='Type your message...'
                 className='flex-1 resize-none border border-border focus:outline-none focus:ring-0 focus:ring-offset-0 py-3 px-3 rounded-md min-h-[48px] max-h-32 overflow-y-auto'
                 rows={1}
-                style={{
-                  height: 'auto',
-                }}
                 onInput={(e) => {
                   const target = e.target as HTMLTextAreaElement;
                   target.style.height = 'auto';
