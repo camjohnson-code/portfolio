@@ -2,8 +2,8 @@ import { useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Sidebar } from '@/components/Sidebar';
 import { Home } from '@/components/Home';
-// import { Projects } from "@/components/sections/Projects";
-// import { Chat } from "@/components/sections/Chat";
+import { Projects } from '@/components/Projects';
+// import { Chat } from '@/components/Chat';
 
 const Index = () => {
   const [activeSection, setActiveSection] = useState('home');
@@ -12,10 +12,10 @@ const Index = () => {
     switch (activeSection) {
       case 'home':
         return <Home onNavigate={setActiveSection} />;
-      //   case "projects":
-      //     return <Projects />;
-      //   case "chat":
-      //     return <Chat />;
+      case 'projects':
+        return <Projects />;
+      // case 'chat':
+      //   return <Chat onNavigate={setActiveSection} />;
       default:
         return <Home onNavigate={setActiveSection} />;
     }
@@ -32,9 +32,9 @@ const Index = () => {
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -8 }}
           transition={{ duration: 0.25 }}
-          className='content-area'
+          className='content-area flex-1 flex'
         >
-          <main className='flex-1 md:ml-64 pt-16 md:pt-0'>{renderSection()}</main>
+          <main className='flex-1 md:ml-64 pt-16 md:pt-0 w-full'>{renderSection()}</main>
         </motion.div>
       </AnimatePresence>
     </div>

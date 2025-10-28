@@ -13,6 +13,8 @@
   --accent-1: #00e6a7;
   --accent-2: #6c6cff;
 
+  --card: 240 12% 10%;
+
   --radius: 12px;
   --transition: 0.25s ease;
   --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -27,6 +29,7 @@
   --color-border: var(--border);
   --color-accent1: var(--accent-1);
   --color-accent2: var(--accent-2);  
+  --color-card: var(--card);
   --shadow-mint: 0 10px 40px -10px hsl(163 100% 45% / 0.3);
 }
 
@@ -34,4 +37,6 @@ body {
   font-family: var(--font-body);
   background-color: var(--bg);
   color: var(--text-primary);
+  padding: 0;
+  margin: 0;
 }
