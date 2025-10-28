@@ -38,17 +38,25 @@ export const Chat = ({ messages, setMessages }: ChatProps) => {
     setInput('');
     setLoading(true);
 
-    await new Promise((resolve) => setTimeout(resolve, 3000));
-
     try {
-      const res = await fetch('/api/chat', {
+      const res = await fetch(import.meta.env.VITE_CHAT_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ message: input }),
       });
+
+      if (!res.ok) {
+        const errorMessage = 'Sorry, I could not generate a response.';
+        const aiMessage: Message = { role: 'assistant', content: errorMessage };
+        setMessages((prev) => [...prev, aiMessage]);
+
+        throw new Error(`Request failed: ${res.status} ${res.statusText}`);
+      }
+
       const data = await res.json();
 
-      const aiMessage: Message = { role: 'assistant', content: data.reply };
+      const replyText = data?.response ?? data?.reply ?? 'Sorry, I could not generate a response.';
+      const aiMessage: Message = { role: 'assistant', content: replyText };
       setMessages((prev) => [...prev, aiMessage]);
     } catch (err) {
       console.error(err);
@@ -73,9 +81,9 @@ export const Chat = ({ messages, setMessages }: ChatProps) => {
           </p>
         </div>
 
-        <Card className='flex-1 overflow-hidden border border-border flex flex-col mb-8'>
-          <CardContent className='p-0 flex-1 flex flex-col'>
-            <ScrollArea ref={scrollAreaRef} className='flex-1 p-4 space-y-4'>
+        <Card className='h-[75vh] overflow-hidden border border-border flex flex-col mb-8'>
+          <CardContent className='p-0 flex-1 flex flex-col min-h-0'>
+            <ScrollArea ref={scrollAreaRef} className='flex-1 min-h-0 p-4 space-y-4'>
               {messages.map((msg, i) => (
                 <div
                   key={i}
