@@ -57,7 +57,7 @@ export const Projects = () => {
         <div className='grid grid-cols-1 md:grid-cols-2'>
           {projects.map((project, index) => (
             <Card
-              key={index}
+              key={project.title}
               className='group border-none bg-card hover:border-primary transition-all duration-300 overflow-hidden rounded-none h-80 lg:h-96 relative'
               style={{
                 backgroundImage: `url(${project.image})`,
