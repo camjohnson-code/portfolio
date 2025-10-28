@@ -123,7 +123,7 @@ export const Chat = ({ messages, setMessages }: ChatProps) => {
                 e.preventDefault();
                 sendMessage();
               }}
-              className='flex gap-2 p-4 border-t border-border'
+              className='flex flex-row items-end gap-2 p-4 border-t border-border'
             >
               <textarea
                 ref={textareaRef}
@@ -148,6 +148,7 @@ export const Chat = ({ messages, setMessages }: ChatProps) => {
                 type='submit'
                 disabled={loading || !input.trim()}
                 className='bg-accent1 text-bg cursor-pointer hover:shadow-mint transition-all duration-300'
+                style={{ minHeight: `${MIN_TEXTAREA_HEIGHT}px` }}
               >
                 Send
               </Button>
