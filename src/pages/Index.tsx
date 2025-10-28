@@ -10,6 +10,7 @@ const Index = () => {
   const [activeSection, setActiveSection] = useState('home');
   const [chatMessages, setChatMessages] = useState<Message[]>([
     {
+      id: 'initial-assistant-message',
       role: 'assistant',
       content:
         "Hi! I'm Cam's AI representative. I can help answer questions about his experience, projects, and skills. You can also leave your name and email and I'll get back to you as soon as possible. What would you like to know?",

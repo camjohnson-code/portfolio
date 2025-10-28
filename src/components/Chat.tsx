@@ -29,7 +29,7 @@ export const Chat = ({ messages, setMessages }: ChatProps) => {
   const sendMessage = async () => {
     if (!input.trim()) return;
 
-    const userMessage: Message = { role: 'user', content: input };
+    const userMessage: Message = { id: crypto.randomUUID(), role: 'user', content: input };
     setMessages((prev) => [...prev, userMessage]);
     setInput('');
     setLoading(true);
@@ -43,7 +43,11 @@ export const Chat = ({ messages, setMessages }: ChatProps) => {
 
       if (!res.ok) {
         const errorMessage = 'Sorry, I could not generate a response.';
-        const aiMessage: Message = { role: 'assistant', content: errorMessage };
+        const aiMessage: Message = {
+          id: crypto.randomUUID(),
+          role: 'assistant',
+          content: errorMessage,
+        };
         setMessages((prev) => [...prev, aiMessage]);
 
         throw new Error(`Request failed: ${res.status} ${res.statusText}`);
@@ -52,7 +56,7 @@ export const Chat = ({ messages, setMessages }: ChatProps) => {
       const data = await res.json();
 
       const replyText = data?.response ?? data?.reply ?? 'Sorry, I could not generate a response.';
-      const aiMessage: Message = { role: 'assistant', content: replyText };
+      const aiMessage: Message = { id: crypto.randomUUID(), role: 'assistant', content: replyText };
       setMessages((prev) => [...prev, aiMessage]);
     } catch (err) {
       console.error(err);
@@ -80,9 +84,9 @@ export const Chat = ({ messages, setMessages }: ChatProps) => {
         <Card className='h-[75vh] overflow-hidden border border-border flex flex-col mb-8'>
           <CardContent className='p-0 flex-1 flex flex-col min-h-0'>
             <ScrollArea ref={scrollAreaRef} className='flex-1 min-h-0 p-4 space-y-4'>
-              {messages.map((msg, i) => (
+              {messages.map((msg) => (
                 <div
-                  key={i}
+                  key={msg.id}
                   className={`flex my-2 ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}
                 >
                   <div
