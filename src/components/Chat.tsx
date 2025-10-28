@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
+import { motion } from 'framer-motion';
 import type { Message } from '@/types/message';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -100,9 +101,11 @@ export const Chat = ({ messages, setMessages }: ChatProps) => {
               ))}
 
               {loading && (
-                <div className='rounded-2xl px-4 py-2 max-w-[80%] border border-border'>
-                  Thinking…
-                </div>
+                <motion.div
+                  className='w-4 h-4 rounded-full bg-text-secondary'
+                  animate={{ scale: [1, 1.05, 1] }}
+                  transition={{ duration: 1, repeat: Infinity, ease: 'easeInOut' }}
+                />
               )}
             </ScrollArea>
             <form
