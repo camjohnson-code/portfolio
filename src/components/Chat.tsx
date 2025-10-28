@@ -16,6 +16,9 @@ export const Chat = ({ messages, setMessages }: ChatProps) => {
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
 
+  const MIN_TEXTAREA_HEIGHT = 48;
+  const MAX_TEXTAREA_HEIGHT = 128;
+
   useEffect(() => {
     if (scrollAreaRef.current) {
       const scrollElement = scrollAreaRef.current.querySelector(
@@ -36,7 +39,7 @@ export const Chat = ({ messages, setMessages }: ChatProps) => {
 
     if (textareaRef.current) {
       textareaRef.current.style.height = 'auto';
-      textareaRef.current.style.height = '48px';
+      textareaRef.current.style.height = `${MIN_TEXTAREA_HEIGHT}px`;
     }
 
     setLoading(true);
@@ -133,7 +136,7 @@ export const Chat = ({ messages, setMessages }: ChatProps) => {
                   }
                 }}
                 placeholder='Type your message...'
-                className='flex-1 resize-none border border-border focus:outline-none focus:ring-0 focus:ring-offset-0 py-3 px-3 rounded-md min-h-[48px] max-h-32 overflow-y-auto'
+                className={`flex-1 resize-none border border-border focus:outline-none focus:ring-0 focus:ring-offset-0 py-3 px-3 rounded-md min-h-[${MIN_TEXTAREA_HEIGHT}px] max-h-[${MAX_TEXTAREA_HEIGHT}px] overflow-y-auto`}
                 rows={1}
                 style={{
                   height: 'auto',
@@ -141,7 +144,7 @@ export const Chat = ({ messages, setMessages }: ChatProps) => {
                 onInput={(e) => {
                   const target = e.target as HTMLTextAreaElement;
                   target.style.height = 'auto';
-                  target.style.height = `${Math.min(target.scrollHeight, 128)}px`;
+                  target.style.height = `${Math.min(target.scrollHeight, MAX_TEXTAREA_HEIGHT)}px`;
                 }}
               />
               <Button
