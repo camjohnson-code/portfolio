@@ -58,6 +58,7 @@ export const Chat = ({ messages, setMessages }: ChatProps) => {
 
       const replyText = data?.response ?? data?.reply ?? 'Sorry, I could not generate a response.';
       const aiMessage: Message = { id: crypto.randomUUID(), role: 'assistant', content: replyText };
+
       setMessages((prev) => [...prev, aiMessage]);
     } catch (err) {
       console.error(err);
@@ -95,7 +96,7 @@ export const Chat = ({ messages, setMessages }: ChatProps) => {
                       msg.role === 'user' ? 'bg-accent1 text-bg' : 'border border-border'
                     }`}
                   >
-                    {msg.content}
+                    <div className='whitespace-pre-wrap'>{msg.content}</div>
                   </div>
                 </div>
               ))}
@@ -103,7 +104,7 @@ export const Chat = ({ messages, setMessages }: ChatProps) => {
               {loading && (
                 <motion.div
                   className='w-4 h-4 rounded-full bg-text-secondary'
-                  animate={{ scale: [1, 1.05, 1] }}
+                  animate={{ scale: [0.85, 1, 0.85] }}
                   transition={{ duration: 1, repeat: Infinity, ease: 'easeInOut' }}
                 />
               )}
