@@ -2,7 +2,7 @@ import { Card } from '@/components/ui/card';
 import { ExternalLink } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import heatAdaptImage from '../../assets/heat-adapt.png';
-import aiCareerRepImage from '../../assets/ai-career-rep.png';
+import aiCareerRepImage from '../../assets/ai-career-rep.webp';
 import workoutmetricsFitImage from '../../assets/WorkoutMetrics.fit.webp';
 import aiTradingPlatformImage from '../../assets/WorkoutMetrics.fit.webp';
 
