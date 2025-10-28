@@ -147,7 +147,8 @@ export const Chat = ({ messages, setMessages }: ChatProps) => {
               <Button
                 type='submit'
                 disabled={loading || !input.trim()}
-                className={`min-h-[${MIN_TEXTAREA_HEIGHT}px] bg-accent1 text-bg cursor-pointer hover:shadow-mint transition-all duration-300`}
+                className='bg-accent1 text-bg cursor-pointer hover:shadow-mint transition-all duration-300'
+                style={{ minHeight: `${MIN_TEXTAREA_HEIGHT}px` }}
               >
                 Send
               </Button>
