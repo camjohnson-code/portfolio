@@ -7,7 +7,7 @@ interface HomeProps {
 
 export const Home = ({ onNavigate }: HomeProps) => {
   return (
-    <section className='min-h-screen flex items-center justify-center px-6 lg:pl-25'>
+    <section className='min-h-screen flex items-center justify-center px-6'>
       <div className='max-w-4xl w-full space-y-8 animate-in fade-in duration-1000'>
         <div className='space-y-4'>
           <h1 className='text-5xl md:text-7xl font-bold leading-tight'>
