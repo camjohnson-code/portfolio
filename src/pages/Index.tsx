@@ -3,10 +3,19 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { Sidebar } from '@/components/Sidebar';
 import { Home } from '@/components/Home';
 import { Projects } from '@/components/Projects';
-// import { Chat } from '@/components/Chat';
+import { Chat } from '@/components/Chat';
+import type { Message } from '@/types/message';
 
 const Index = () => {
   const [activeSection, setActiveSection] = useState('home');
+  const [chatMessages, setChatMessages] = useState<Message[]>([
+    {
+      id: 'initial-assistant-message',
+      role: 'assistant',
+      content:
+        "Hi! I'm Cam's AI representative. I can help answer questions about his experience, projects, and skills. You can also leave your name and email and I'll get back to you as soon as possible. What would you like to know?",
+    },
+  ]);
 
   const renderSection = () => {
     switch (activeSection) {
@@ -14,8 +23,8 @@ const Index = () => {
         return <Home onNavigate={setActiveSection} />;
       case 'projects':
         return <Projects />;
-      // case 'chat':
-      //   return <Chat onNavigate={setActiveSection} />;
+      case 'chat':
+        return <Chat messages={chatMessages} setMessages={setChatMessages} />;
       default:
         return <Home onNavigate={setActiveSection} />;
     }
