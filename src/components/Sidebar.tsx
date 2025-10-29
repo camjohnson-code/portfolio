@@ -69,6 +69,7 @@ export const Sidebar = ({ activeSection, setActiveSection }: SidebarProps) => {
                 key={link.label}
                 href={link.href}
                 target='_blank'
+                aria-label={link.label}
                 rel='noopener noreferrer'
                 className='flex items-center gap-2 px-4 py-3 rounded-lg text-muted-foreground hover:bg-card hover:text-foreground transition-all duration-300'
               >
