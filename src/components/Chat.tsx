@@ -111,11 +111,14 @@ export const Chat = ({ messages, setMessages }: ChatProps) => {
               ))}
 
               {loading && (
-                <motion.div
-                  className='w-4 h-4 rounded-full bg-text-secondary'
-                  animate={{ scale: [0.85, 1, 0.85] }}
-                  transition={{ duration: 1, repeat: Infinity, ease: 'easeInOut' }}
-                />
+                <div className='flex items-center justify-start'>
+                  <motion.div
+                    className='w-4 h-4 rounded-full bg-text-secondary mr-2'
+                    animate={{ scale: [0.85, 1, 0.85] }}
+                    transition={{ duration: 1, repeat: Infinity, ease: 'easeInOut' }}
+                  ></motion.div>
+                  <p className='text-text-secondary text-sm'>Loading...</p>
+                </div>
               )}
             </ScrollArea>
             <form
