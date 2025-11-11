@@ -63,7 +63,7 @@ const Index = () => {
             <button className="hover:scale-105 transition-all duration-300 px-7 py-3 rounded-full cursor-pointer bg-gradient-to-r from-blue-600 to-purple-600 text-white">
               View Work
             </button>
-            <button className="bg-accent2 text-black px-6 py-3 rounded-full cursor-pointer text-foreground bg-background border-1 border-border">
+            <button className="px-6 py-3 rounded-full cursor-pointer text-foreground bg-background border border-border">
               Contact Me
             </button>
           </div>
