@@ -4,8 +4,18 @@ import { Github, Link } from "lucide-react";
 import { Footer } from "@/components/Footer";
 import { motion } from "framer-motion";
 import { Header } from "@/components/Header";
+import { useRef } from "react";
 
 const Index = () => {
+  const projectsRef = useRef<HTMLDivElement>(null);
+
+  const scrollToProjects = () => {
+    projectsRef.current?.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+  };
+
   const projects = [
     {
       title: "Heat AI",
@@ -60,17 +70,27 @@ const Index = () => {
             design principles.
           </p>
           <div className="flex gap-6">
-            <button className="hover:scale-105 transition-all duration-300 px-7 py-3 rounded-full cursor-pointer bg-gradient-to-r from-blue-600 to-purple-600 text-white">
+            <button
+              onClick={scrollToProjects}
+              aria-label="View Work"
+              className="hover:scale-105 transition-all duration-300 px-7 py-3 rounded-full cursor-pointer bg-gradient-to-r from-blue-600 to-purple-600 text-white"
+            >
               View Work
             </button>
-            <button className="px-6 py-3 rounded-full cursor-pointer text-foreground bg-background border border-border">
+            <a
+              href="mailto:cjohnson10176@gmail.com"
+              className="bg-accent2 text-black px-6 py-3 rounded-full cursor-pointer text-foreground bg-background border-1 border-border flex items-center justify-center"
+              style={{ textDecoration: "none" }}
+              aria-label="Contact Me"
+            >
               Contact Me
-            </button>
+            </a>
           </div>
         </motion.section>
 
         <section
           id="projects"
+          ref={projectsRef}
           className="w-full flex flex-col items-center justify-center max-w-[1400px] mx-auto px-6 py-24"
         >
           <motion.div
@@ -106,44 +126,47 @@ const Index = () => {
                 ease: "easeInOut",
                 delay: index * 0.1,
               }}
-              className={`flex gap-16 mb-16 items-center ${
-                index % 2 === 1 ? "flex-row-reverse text-right" : "text-left"
+              className={`flex flex-col-reverse md:flex-row gap-8 md:gap-16 mb-16 items-center ${
+                index % 2 === 1 ? "md:flex-row-reverse" : ""
               }`}
             >
-              <div className="w-1/2">
+              {/* Image Section */}
+              <div className="w-full md:w-1/2">
                 <div className="relative group">
                   <div className="absolute inset-0 bg-gradient-to-br from-blue-600/10 to-purple-600/10 rounded-2xl blur-3xl group-hover:blur-3xl transition-all opacity-0 group-hover:opacity-100" />
                   <img
                     src={project.image || "/placeholder.svg"}
                     alt={project.title}
-                    width={1280}
-                    height={720}
-                    className="relative w-full rounded-2xl border border-border shadow-sm hover:shadow-lg transition-shadow"
+                    className="relative w-full h-auto rounded-2xl border border-border shadow-sm hover:shadow-lg transition-shadow"
                   />
                 </div>
               </div>
-
+          
+              {/* Description Section */}
               <div
-                className={`w-1/2 ${index % 2 === 1 ? "text-right justify-end" : "text-left"}`}
+                className={`w-full md:w-1/2 ${
+                  index % 2 === 1 ? "text-center md:text-right" : "text-center md:text-left"
+                }`}
               >
                 <h3
-                  className="text-4xl font-bold mb-4"
+                  className="text-3xl md:text-4xl font-bold mb-4"
                   style={{ fontFamily: "var(--font-inter)" }}
                 >
                   {project.title}
                 </h3>
-                <p className="text-muted-foreground mb-8 leading-relaxed text-lg">
+                <p className="text-muted-foreground mb-8 leading-relaxed text-md md:text-lg">
                   {project.description}
                 </p>
-
-                <div
-                  className={`mb-8 ${index % 2 === 1 ? "text-right" : "text-left"}`}
-                >
+          
+                {/* Technologies Section */}
+                <div className="mb-8">
                   <p className="text-sm font-semibold mb-3 uppercase tracking-widest bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
                     Technologies
                   </p>
                   <div
-                    className={`flex flex-wrap gap-2 ${index % 2 === 1 ? "justify-end" : ""}`}
+                    className={`flex flex-wrap gap-2 ${
+                      index % 2 === 1 ? "justify-center md:justify-end" : "justify-center md:justify-start"
+                    }`}
                   >
                     {project.technologies.map((tech) => (
                       <span
@@ -156,9 +179,12 @@ const Index = () => {
                     ))}
                   </div>
                 </div>
-
+          
+                {/* Links Section */}
                 <div
-                  className={`flex gap-6 items-center ${index % 2 === 1 ? "justify-end" : ""}`}
+                  className={`flex gap-6 items-center ${
+                    index % 2 === 1 ? "justify-center md:justify-end" : "justify-center md:justify-start"
+                  }`}
                 >
                   {index % 2 === 1 ? (
                     <>
