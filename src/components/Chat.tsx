@@ -130,7 +130,7 @@ export const Chat = () => {
                       <div
                         className={`rounded-2xl px-4 py-2 max-w-[80%] ${
                           msg.role === "user"
-                            ? "bg-primary text-bg"
+                            ? "bg-primary text-primary-foreground"
                             : "border border-border"
                         }`}
                       >
@@ -172,7 +172,7 @@ export const Chat = () => {
                       }
                     }}
                     placeholder="Type your message..."
-                    className={`flex-1 resize-none border border-border focus:outline-none focus:ring-0 focus:ring-offset-0 py-3 px-3 rounded-md min-h-[${MIN_TEXTAREA_HEIGHT}px] max-h-[${MAX_TEXTAREA_HEIGHT}px] overflow-y-auto no-scrollbar`}
+                    className="flex-1 resize-none border border-border focus:outline-none focus:ring-0 focus:ring-offset-0 py-3 px-3 rounded-md overflow-y-auto no-scrollbar"
                     rows={1}
                     onInput={(e) => {
                       const target = e.target as HTMLTextAreaElement;
@@ -183,7 +183,7 @@ export const Chat = () => {
                   <Button
                     type="submit"
                     disabled={loading || !input.trim()}
-                    className="bg-accent1 text-bg cursor-pointer hover:shadow-mint transition-all duration-300"
+                     className="bg-primary text-primary-foreground cursor-pointer hover:shadow-primary transition-all duration-300"
                     style={{ minHeight: `${MIN_TEXTAREA_HEIGHT}px` }}
                   >
                     Send
