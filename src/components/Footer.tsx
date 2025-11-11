@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 export const Footer = () => {
   return (
     <footer className="w-full mt-5 border-t border-border bg-background/50 backdrop-blur supports-[backdrop-filter]:bg-background/25">
@@ -17,16 +19,20 @@ export const Footer = () => {
             <ul className="space-y-2 text-sm">
               <li>
                 <a
-                  href="#"
+                  href="https://github.com/cjohnson10176"
                   className="text-muted-foreground hover:text-foreground transition-colors"
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
                   GitHub
                 </a>
               </li>
               <li>
                 <a
-                  href="#"
+                  href="https://www.linkedin.com/in/camjohnson-code/"
                   className="text-muted-foreground hover:text-foreground transition-colors"
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
                   LinkedIn
                 </a>
@@ -54,20 +60,20 @@ export const Footer = () => {
             </h4>
             <ul className="space-y-2 text-sm">
               <li>
-                <a
-                  href="/"
+                <Link
+                  to="/"
                   className="text-muted-foreground hover:text-foreground transition-colors"
                 >
                   Home
-                </a>
+                </Link>
               </li>
               <li>
-                <a
-                  href="/chat"
+                <Link
+                  to="/chat"
                   className="text-muted-foreground hover:text-foreground transition-colors"
                 >
                   Chat
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
