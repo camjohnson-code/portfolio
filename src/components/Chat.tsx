@@ -61,7 +61,6 @@ export const Chat = () => {
       });
 
       if (!res.ok) {
-        console.log("Response not ok:", res);
         const errorMessage = "Sorry, I could not generate a response.";
         const aiMessage: Message = {
           id: crypto.randomUUID(),
@@ -96,101 +95,106 @@ export const Chat = () => {
   return (
     <>
       <Header />
-      <section className="h-screen py-10 px-6 flex flex-col">
-        <div className="max-w-5xl mx-auto w-full space-y-6 flex flex-col flex-1 animate-in fade-in duration-1000">
-          <div className="space-y-4 text-center">
-            <h2 className="text-4xl md:text-5xl font-bold">
-              Let's{" "}
-              <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                Chat
-              </span>
-            </h2>
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, ease: "easeInOut" }}
+      >
+        <section className="py-10 px-6 flex flex-col">
+          <div className="max-w-5xl mx-auto w-full space-y-6 flex flex-col flex-1">
+            <div className="space-y-4 text-center">
+              <h2 className="text-4xl md:text-5xl font-bold">
+                Let's{" "}
+                <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                  Chat
+                </span>
+              </h2>
 
-            <p className="text-lg text-text-secondary max-w-2xl mx-auto">
-              Have a project in mind or just want to chat? I'd love to hear from
-              you.
-            </p>
-          </div>
+              <p className="text-lg text-text-secondary max-w-2xl mx-auto">
+                Have a project in mind or just want to chat? I'd love to hear
+                from you.
+              </p>
+            </div>
 
-          <Card className="h-[75vh] overflow-hidden border border-border flex flex-col mb-8">
-            <CardContent className="p-0 flex-1 flex flex-col min-h-0">
-              <ScrollArea
-                ref={scrollAreaRef}
-                className="flex-1 min-h-0 p-4 space-y-4"
-              >
-                {chatMessages.map((msg) => (
-                  <div
-                    key={msg.id}
-                    className={`flex my-2 ${msg.role === "user" ? "justify-end" : "justify-start"}`}
-                  >
-                    <div
-                      className={`rounded-2xl px-4 py-2 max-w-[80%] ${
-                        msg.role === "user"
-                          ? "bg-primary text-bg"
-                          : "border border-border"
-                      }`}
-                    >
-                      <div className="whitespace-pre-wrap">{msg.content}</div>
-                    </div>
-                  </div>
-                ))}
-
-                {loading && (
-                  <div className="flex items-center justify-start">
-                    <motion.div
-                      className="w-4 h-4 rounded-full bg-text-secondary mr-2"
-                      animate={{ scale: [0.85, 1, 0.85] }}
-                      transition={{
-                        duration: 1,
-                        repeat: Infinity,
-                        ease: "easeInOut",
-                      }}
-                    ></motion.div>
-                    <p className="text-text-secondary text-sm">Loading...</p>
-                  </div>
-                )}
-              </ScrollArea>
-              <form
-                onSubmit={(e) => {
-                  e.preventDefault();
-                  sendMessage();
-                }}
-                className="flex flex-row items-end gap-2 p-4 border-t border-border"
-              >
-                <textarea
-                  ref={textareaRef}
-                  value={input}
-                  onChange={(e) => setInput(e.target.value)}
-                  onKeyDown={(e) => {
-                    if (e.key === "Enter" && !e.shiftKey) {
-                      e.preventDefault();
-                      sendMessage();
-                    }
-                  }}
-                  placeholder="Type your message..."
-                  className={`flex-1 resize-none border border-border focus:outline-none focus:ring-0 focus:ring-offset-0 py-3 px-3 rounded-md min-h-[${MIN_TEXTAREA_HEIGHT}px] max-h-[${MAX_TEXTAREA_HEIGHT}px] overflow-y-auto no-scrollbar`}
-                  rows={1}
-                  onInput={(e) => {
-                    const target = e.target as HTMLTextAreaElement;
-                    target.style.height = "auto";
-                    target.style.height = `${Math.min(target.scrollHeight, MAX_TEXTAREA_HEIGHT)}px`;
-                  }}
-                />
-                <Button
-                  type="submit"
-                  disabled={loading || !input.trim()}
-                  className="bg-accent1 text-bg cursor-pointer hover:shadow-mint transition-all duration-300"
-                  style={{ minHeight: `${MIN_TEXTAREA_HEIGHT}px` }}
+            <Card className="h-[75vh] overflow-hidden border border-border flex flex-col mb-8">
+              <CardContent className="p-0 flex-1 flex flex-col min-h-0">
+                <ScrollArea
+                  ref={scrollAreaRef}
+                  className="flex-1 min-h-0 p-4 space-y-4"
                 >
-                  Send
-                </Button>
-              </form>
-            </CardContent>
-          </Card>
-        </div>
+                  {chatMessages.map((msg) => (
+                    <div
+                      key={msg.id}
+                      className={`flex my-2 ${msg.role === "user" ? "justify-end" : "justify-start"}`}
+                    >
+                      <div
+                        className={`rounded-2xl px-4 py-2 max-w-[80%] ${
+                          msg.role === "user"
+                            ? "bg-primary text-bg"
+                            : "border border-border"
+                        }`}
+                      >
+                        <div className="whitespace-pre-wrap">{msg.content}</div>
+                      </div>
+                    </div>
+                  ))}
 
-        <Footer />
-      </section>
+                  {loading && (
+                    <div className="flex items-center justify-start">
+                      <motion.div
+                        className="w-4 h-4 rounded-full bg-text-secondary mr-2"
+                        animate={{ scale: [0.85, 1, 0.85] }}
+                        transition={{
+                          duration: 1,
+                          repeat: Infinity,
+                          ease: "easeInOut",
+                        }}
+                      ></motion.div>
+                      <p className="text-text-secondary text-sm">Loading...</p>
+                    </div>
+                  )}
+                </ScrollArea>
+                <form
+                  onSubmit={(e) => {
+                    e.preventDefault();
+                    sendMessage();
+                  }}
+                  className="flex flex-row items-end gap-2 p-4 border-t border-border"
+                >
+                  <textarea
+                    ref={textareaRef}
+                    value={input}
+                    onChange={(e) => setInput(e.target.value)}
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter" && !e.shiftKey) {
+                        e.preventDefault();
+                        sendMessage();
+                      }
+                    }}
+                    placeholder="Type your message..."
+                    className={`flex-1 resize-none border border-border focus:outline-none focus:ring-0 focus:ring-offset-0 py-3 px-3 rounded-md min-h-[${MIN_TEXTAREA_HEIGHT}px] max-h-[${MAX_TEXTAREA_HEIGHT}px] overflow-y-auto no-scrollbar`}
+                    rows={1}
+                    onInput={(e) => {
+                      const target = e.target as HTMLTextAreaElement;
+                      target.style.height = "auto";
+                      target.style.height = `${Math.min(target.scrollHeight, MAX_TEXTAREA_HEIGHT)}px`;
+                    }}
+                  />
+                  <Button
+                    type="submit"
+                    disabled={loading || !input.trim()}
+                    className="bg-accent1 text-bg cursor-pointer hover:shadow-mint transition-all duration-300"
+                    style={{ minHeight: `${MIN_TEXTAREA_HEIGHT}px` }}
+                  >
+                    Send
+                  </Button>
+                </form>
+              </CardContent>
+            </Card>
+          </div>
+        </section>
+      </motion.div>
+      <Footer />
     </>
   );
 };
