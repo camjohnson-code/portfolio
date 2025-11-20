@@ -1,4 +1,4 @@
-import heatAdaptImage from "../../assets/heat-adapt.png";
+import heatAiImage from "../../assets/heat-ai.webp";
 import aiCareerRepImage from "../../assets/ai-career-rep.webp";
 import { Github, Link } from "lucide-react";
 import { Footer } from "@/components/Footer";
@@ -30,14 +30,14 @@ const Index = () => {
         "Stripe",
       ],
       github: "https://www.github.com/camjohnson-code/heat-ai-frontend",
-      deployLink: "https://getheatai.com",
-      image: heatAdaptImage,
+      deployLink: "https://getheatai.app",
+      image: heatAiImage,
     },
     {
       title: "AI Career Chatbot",
       description:
         "AI Career Chatbot is a personalized conversational agent trained on my professional background, writing style, and career history. It uses a Python backend and OpenAI’s API to deliver tailored advice and answer questions as an AI version of me.",
-      technologies: ["Next.js", "Typescript", "Python", "OpenAI"],
+      technologies: ["React", "Typescript", "Python", "OpenAI"],
       github: "https://www.github.com/camjohnson-code/career-ai-chatbot",
       deployLink: "https://camjohnson.dev/chat",
       image: aiCareerRepImage,
@@ -61,7 +61,7 @@ const Index = () => {
               Building exceptional digital experiences
             </p>
           </div>
-          <h1 className="text-8xl font-bold">
+          <h1 className="text-7xl font-bold">
             Crafting robust software with clean code and purpose
           </h1>
           <p className="text-lg font-light text-muted max-w-4xl">
