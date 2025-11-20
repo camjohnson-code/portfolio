@@ -1,7 +1,7 @@
 import { Card } from '@/components/ui/card';
 import { ExternalLink } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import heatAdaptImage from '../../assets/heat-adapt.png';
+import heatAiImage from '../../assets/heat-ai.webp';
 import aiCareerRepImage from '../../assets/ai-career-rep.webp';
 import workoutmetricsFitImage from '../../assets/WorkoutMetrics.fit.webp';
 import aiTradingPlatformImage from '../../assets/WorkoutMetrics.fit.webp';
@@ -12,7 +12,7 @@ const projects = [
     description:
       'Full-stack e-commerce solution with real-time inventory management and payment processing.',
     link: 'https://github.com/camjohnson-code/heat-adapt',
-    image: heatAdaptImage,
+    image: heatAiImage,
   },
   {
     title: 'AI Career Rep',
