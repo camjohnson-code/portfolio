@@ -144,8 +144,8 @@ export const Chat = () => {
                           ease: 'easeInOut',
                         }}
                       ></motion.div>
-                      <p className='text-text-secondary text-sm'>
-                        <LoaderCircle />
+                      <p className='text-text-secondary text-sm flex items-center gap-2'>
+                        <LoaderCircle className="animate-spin" />
                         Creating response
                       </p>
                     </div>
