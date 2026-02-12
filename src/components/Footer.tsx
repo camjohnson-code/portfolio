@@ -19,7 +19,7 @@ export const Footer = () => {
             <ul className="space-y-2 text-sm">
               <li>
                 <a
-                  href="https://github.com/cjohnson10176"
+                  href="https://github.com/camjohnson-code"
                   className="text-muted-foreground hover:text-foreground transition-colors"
                   target="_blank"
                   rel="noopener noreferrer"
